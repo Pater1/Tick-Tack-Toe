@@ -1,4 +1,4 @@
-
+package ttt;
 public class Board {
 	int[][] base = new int[3][3];
 	Square box00 = new Square();
@@ -21,6 +21,10 @@ public class Board {
 		base[2][0] = box20.reset;
 		base[2][1] = box21.reset;
 		base[2][2] = box22.reset;
+	}
+	
+	public int[][] getBase(){
+		return base;
 	}
 	
 	public int[] convertorTo2d(int index) {

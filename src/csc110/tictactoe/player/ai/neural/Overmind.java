@@ -11,11 +11,18 @@ public class Overmind {
 	public enum Difficulty{
 		easy,
 		medium,
-		hard
+		hard,
+		any
 	}
 	public Difficulty difficulty = Difficulty.easy;
 	
-	public Vector2Int brainSize = Vector2Int.newVector(20, 20);
+	public Vector2Int brainSize;
+	
+	public static Overmind _newOVM(Vector2Int size){
+		Overmind ov = new Overmind();
+		ov.brainSize = size;
+		return ov;
+	}
 	
 	public Brain GetNextBrain(){
 		if(brains.size() <= 0){
@@ -24,11 +31,10 @@ public class Overmind {
 			brains.add(new ArrayList<ArrayList<Integer>>());
 		}
 		Brain br = BreedabilityCatch(GetBreedingBrainsFromPool());
-		ReturnBrain(br.Serialize());
 		return br;
 	}
 
-	private void ReturnBrain(ArrayList<Integer> serialize) {
+	public void ReturnBrain(ArrayList<Integer> serialize) {
 		switch(serialize.get(0)){
 		case -1:
 			brains.get(0).add(serialize);
@@ -50,10 +56,18 @@ public class Overmind {
 		switch(difficulty){
 			case hard:
 				br.addAll(brains.get(2));
+				break;
 			case medium:
 				br.addAll(brains.get(1));
+				break;
 			case easy:
 				br.addAll(brains.get(0));
+				break;
+			case any:
+				br.addAll(brains.get(0));
+				br.addAll(brains.get(1));
+				br.addAll(brains.get(2));
+				break;
 		}
 		
 		return br;

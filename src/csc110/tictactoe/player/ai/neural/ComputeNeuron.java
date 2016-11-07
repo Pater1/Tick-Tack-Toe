@@ -24,12 +24,10 @@ public class ComputeNeuron implements Neuron {
 				result = fromBrain.GetNeuronResult(inA) + fromBrain.GetNeuronResult(inB);
 			case subtract:
 				result = fromBrain.GetNeuronResult(inA) - fromBrain.GetNeuronResult(inB);
-			case multiply:
-				result = fromBrain.GetNeuronResult(inA) * fromBrain.GetNeuronResult(inB);
 		}
 		if(result != 0){
 			result /= Math.abs(result);
-		} 
+		}
 		return result;
 	}
 	
